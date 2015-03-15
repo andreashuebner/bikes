@@ -49,4 +49,32 @@ class Customer():
         except:
             raise TypeError("Money to be added needs to be a number")
             
+    def buy_bike(self,price,bike):
+        ''' Try to buy a bike in case of sufficent funds. Substract price from fund
+        
+        Args:
+            price: Price of bike {int}
+            bike: Bike to buy {instance of Bike)
+            
+        Returns:
+            True if sufficient fund and bike could be bought, False if insufficient funds
+        
+        Raises:
+            TypeError in case parameter price is not a number
+       '''
+        if price == None:
+            raise TypeError("Buying a bike requires price of bike as parameter")
+            
+        try:
+            price = int(price)
+        except:
+            raise TypeError("Buying a bike requires price of bike as number")
+        if self._money >= price:
+            self._money -= price
+            return True
+        
+        else:
+            return False
+
+            
         

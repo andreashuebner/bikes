@@ -22,7 +22,7 @@ class TestBike(unittest.TestCase):
         self.assertEquals(bike.get_weight(),40)
         self.assertEquals(bike.get_cost(),800)
         
-        
+    
         
 class TestBikeShop(unittest.TestCase):
     def test_create_bikeshop(self):
