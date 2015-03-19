@@ -32,4 +32,7 @@ class Bike():
         
     def get_cost(self):
         return self._cost
+    
+    def get_model(self):
+        return self._model
         

@@ -20,7 +20,18 @@ class Customer():
             self._money = int(self._money)
         except:
             raise TypeError("Second parameter for money needs to be a number")
+        
+        self._bike = None #attribute for bike object when buying a bike
+    
+    def get_name(self):
+        ''' Return name of customer
+        
+        Returns:
+            Name of customer {string}
             
+        '''
+        
+        return self._name
     def get_fund(self):
         ''' Returns available fund of customer
         
@@ -71,10 +82,21 @@ class Customer():
             raise TypeError("Buying a bike requires price of bike as number")
         if self._money >= price:
             self._money -= price
+            self._bike = bike
             return True
         
         else:
             return False
+        
+    def get_bike(self):
+        ''' Returns the bike a customer owns
+        
+        Returns:
+            Reference to bike object if customer owns a bike, otherwise None
+            
+       '''
+        
+        return self._bike
 
             
         

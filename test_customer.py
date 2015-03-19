@@ -14,7 +14,9 @@ class TestCustomer(unittest.TestCase):
             
         with self.assertRaises(TypeError,msg="Should throw error when money parameter not a number"):
             bikeCustomer = Customer("Andreas","Peter")
-            
+    def test_return_name(self):
+        bikeCustomer = Customer("Andreas")
+        self.assertEquals("Andreas",bikeCustomer.get_name(),msg="Customer should be able to return his name")
     def test_add_substract_fund(self):
         bikeCustomer = Customer("Andreas")
         self.assertEquals(0,bikeCustomer.get_fund(),msg="Initial fund should be 0")
@@ -58,7 +60,11 @@ class TestCustomer(unittest.TestCase):
         
         bikeCustomer = Customer("Andreas")
         bikeCustomer.add_fund(800)
-        bikeCustomer.buy_bike(700)
+        bikeCustomer.buy_bike(700,bike)
+        self.assertEquals(bikeCustomer.get_fund(),100,msg="After having funds of 800 and buying a bike of 700, remaining\
+        funds should be 100")
+        self.assertEquals(bikeCustomer.get_bike(),bike,msg="After buying a specific bike, this bike should be owned\
+        by the customer")
         
         
         
