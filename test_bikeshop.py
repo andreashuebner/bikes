@@ -48,6 +48,39 @@ class TestBikeBikeShop(unittest.TestCase):
             shop1.return_bikes_for_budget("Andreas")
         self.assertItemsEqual([bike1,bike3,bike4],shop1.return_bikes_for_budget(330),msg="After adding 4 bikes and asking\
         for all bikes up to 330 USD, all bikes costing up to 330 usd after adding margin are return")
+    def test_return_price_for_bike(self):
+        shop1 = BikeShop("Andreas Bikeshop",10) #shop with margin of 10%
+        bike1 = Bike("Cheap bike",30,100) #this will cost 110
+        bike2 = Bike("Expensive bike",40,500) #this will cost 550
+        bike3 = Bike("Medium expensive bike",40,300) #this will cost 330
+        bike4 = Bike("Another cheap bike",45,200) #this will cost 220
+        shop1.add_bike(bike1)
+        shop1.add_bike(bike2)
+        shop1.add_bike(bike3)
+        shop1.add_bike(bike4)
+        
+        #create another bike not being added to inventory
+        bike5 = Bike("Random bike",50,300)
+        
+        with self.assertRaises(RuntimeError,msg="Trying to get the price of an object not a bike or not in inventory raises RuntimeError"):
+            shop1.return_price("Andreas")
+        with self.assertRaises(RuntimeError,msg="Trying to get the price of an object not a bike or not in inventory raises RuntimeError"):
+            shop1.return_price(bike5)
+            
+        self.assertEqual(shop1.return_price(bike1,110,"Bike with cost of 100 and margin 10% price is 110")
+        self.assertEqual(shop1.return_price(bike3,330,"Bike with cost of 300 and margin 10% price is 330")
+    def test_buy_bike(self):
+        shop1 = BikeShop("Andreas Bikeshop",10) #shop with margin of 10%
+        bike1 = Bike("Cheap bike",30,100) #this will cost 110
+        bike2 = Bike("Expensive bike",40,500) #this will cost 550
+        bike3 = Bike("Medium expensive bike",40,300) #this will cost 330
+        bike4 = Bike("Another cheap bike",45,200) #this will cost 220
+        shop1.add_bike(bike1)
+        shop1.add_bike(bike2)
+        shop1.add_bike(bike3)
+        shop1.add_bike(bike4)
+        
+        
         
         
         

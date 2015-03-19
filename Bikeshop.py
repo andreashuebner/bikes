@@ -18,7 +18,23 @@ class BikeShop():
         except:
             raise TypeError("Parameter margin needs to be an integer")
         self._listBikes=[] #list of bikes
+    def return_price(self,bike):
+        '''Return price of a bike in inventory
         
+        Args:
+            bike: Bike object {instance of Bike}
+            
+        Returns:
+            price of bike (cost + margin) {int}
+            
+        Raises:
+            RuntimeError in case a non bike object is passed or the bike passed is not in inventory
+        '''    
+        if not isinstance(bike,Bike):
+            raise RuntimeError("Cannot return price for non bike object")
+            
+        if bike not in self._listBikes:
+            raise RuntimeError("Bike is not in inventory")
     def add_bike(self,bike):
         ''' Function to add a bike
         
@@ -32,6 +48,8 @@ class BikeShop():
         
         if not isinstance(bike,Bike):
             raise TypeError("You can only add a bike to the bike shop")
+            
+        
          
         #calculate price
         
