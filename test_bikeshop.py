@@ -67,8 +67,8 @@ class TestBikeBikeShop(unittest.TestCase):
         with self.assertRaises(RuntimeError,msg="Trying to get the price of an object not a bike or not in inventory raises RuntimeError"):
             shop1.return_price(bike5)
             
-        self.assertEqual(shop1.return_price(bike1,110,"Bike with cost of 100 and margin 10% price is 110")
-        self.assertEqual(shop1.return_price(bike3,330,"Bike with cost of 300 and margin 10% price is 330")
+        self.assertEqual(shop1.return_price(bike1),110,"Bike with cost of 100 and margin 10% price is 110")
+        self.assertEqual(shop1.return_price(bike3),330,"Bike with cost of 300 and margin 10% price is 330")
     def test_buy_bike(self):
         shop1 = BikeShop("Andreas Bikeshop",10) #shop with margin of 10%
         bike1 = Bike("Cheap bike",30,100) #this will cost 110
@@ -80,6 +80,8 @@ class TestBikeBikeShop(unittest.TestCase):
         shop1.add_bike(bike3)
         shop1.add_bike(bike4)
         
+        shop1.purchase_bike(bike1)
+        self.assertEqual(shop1.return_money(),110,"After purchasing one bike for cost 100 + margin 10%, shop should have 110 USD money")
         
         
         

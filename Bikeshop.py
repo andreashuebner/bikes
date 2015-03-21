@@ -13,6 +13,7 @@ class BikeShop():
             
         '''
         self._name = name
+        self._money = 0
         try:
             self._margin = int(margin)
         except:
@@ -35,11 +36,21 @@ class BikeShop():
             
         if bike not in self._listBikes:
             raise RuntimeError("Bike is not in inventory")
+            
+        for comparisonBike in self._listBikes:
+            if comparisonBike == bike:
+                print("found bike")
+                
+                cost = bike.get_cost()
+                
+                price = cost + cost * (self._margin/100.0)
+                
+                return price
     def add_bike(self,bike):
         ''' Function to add a bike
         
         Args:
-            bike: Bike object to add {instance of bike}
+            bike: Bike object to add {instance of Bike}
             
         Raises:
             TypeError if bike is not an instance of Bike
@@ -54,6 +65,32 @@ class BikeShop():
         #calculate price
         
         self._listBikes.append(bike)
+        
+    def purchase_bike(self,bike):
+        '''Function to purchase a bike from bike shope
+        
+        Args:
+            bike: Bike to purchase {instance of Bike}
+            
+       '''
+        
+        for bikeCompare in self._listBikes:
+            if bikeCompare == bike:
+                cost = bike.get_cost()
+                
+                price = cost + cost * (self._margin/100.0)
+                self._money += price
+                self._listBikes.remove(bikeCompare)
+                
+    def return_money(self):
+        '''Function to return current money of bike shope
+        
+        Returns:
+           Money of bikeshop earned {int}
+           
+        '''
+        
+        return self._money
     def return_bikes_for_budget(self,budget):
         '''Return all bikes in list that can be purchased with certain budget
         

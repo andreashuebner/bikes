@@ -24,11 +24,7 @@ class TestBike(unittest.TestCase):
         
     
         
-class TestBikeShop(unittest.TestCase):
-    def test_create_bikeshop(self):
-        ''' I am able to create a new instance of BikeShop class '''
-        bikeShop = BikeShop()
-        self.assertIsInstance(bikeShop,BikeShop,msg="bikeShop is instance of BikeShop")
+
         
  
         
